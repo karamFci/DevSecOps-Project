@@ -11,8 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                def branch = env.BRANCH_NAME ?: 'main'
-                git branch: branch, url: 'https://github.com/karamFci/DevSecOps-Project.git'
+                git branch: 'main' , url: 'https://github.com/karamFci/DevSecOps-Project.git'
 
             }
         }
