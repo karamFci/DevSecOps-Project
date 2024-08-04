@@ -21,7 +21,7 @@ pipeline {
                 script {
                     def netImage = docker.build("netflix", "--build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY}" , ".") 
 
-                    #docker.build("netflix:latest" "--build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .")
+                   // docker.build("netflix:latest" "--build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .")
                 }
             }
         }
