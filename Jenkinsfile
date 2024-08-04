@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build("-t ${DOCKER_HUB_REPO}:netflix --build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .")
+                    docker.build("netflix:latest --build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .")
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub') {
-                        def app = docker.image("${DOCKER_HUB_REPO}:netflix")
+                        def app = docker.image("netflix:latest")
                         app.push()
                     }
                 }
