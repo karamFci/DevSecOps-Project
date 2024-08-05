@@ -30,8 +30,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def netImage = docker.build("netflix", "--build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .") 
-
+                    //def netImage = docker.build("netflix", "--build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .") 
+                    dockerImage = docker.build ("karamfci/mh-repo" , "--build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .")   
                    // docker.build("netflix:latest" "--build-arg TMDB_V3_API_KEY=${env.TMDB_V3_API_KEY} .")
                 }
             }
@@ -40,9 +40,10 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-                        def app = docker.image("netflix:latest")
-                        docker.image('netflix').push('latest')
+                    docker.withRegistry('', 'dockerhub') {
+                        dockerImage.push()
+                        //def app = docker.image("netflix:latest")
+                        //docker.image('netflix').push('latest')
                         // app.push("latest")
                     }
                 }
