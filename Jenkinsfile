@@ -9,6 +9,17 @@ pipeline {
     }
     
     stages {
+
+        
+        stage("Fix the permission issue") {
+
+            agent any
+
+            steps {
+                sh "sudo chown root:docker /run/docker.sock"
+            }
+
+        }
         stage('Checkout') {
             steps {
                 git branch: 'main' , url: 'https://github.com/karamFci/DevSecOps-Project.git'
