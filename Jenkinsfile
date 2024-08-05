@@ -40,9 +40,10 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerhub') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
                         def app = docker.image("netflix:latest")
-                        app.push("latest")
+                        docker.image('netflix').push('latest')
+                        // app.push("latest")
                     }
                 }
             }
