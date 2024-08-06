@@ -48,15 +48,7 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
-            steps {
-                script {
-                    withCredentials([file(credentialsId: 'kubeconfig-credentials-id', variable: 'KUBECONFIG')]) {
-                        sh 'kubectl apply -f deployment.yaml -n solution --kubeconfig=$KUBECONFIG'
-                    }
-                }
-            }
-        }
+
         stage('Trigger ManifestUpdate') {
             steps {
                 script {
